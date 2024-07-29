@@ -29,7 +29,7 @@ namespace IEMod.Mods
 
             static void Postfix(GameState __instance)
             {
-                if (ModMain.Settings.BackerNamesOption != (int)BackerModOptions.Original)
+                if (ModMain.Settings.BackerNamesOption != (int)BackerModOptions.Original || ModMain.Settings.DisableBackerDialog)
                 {
                     GameObject[] allObjects = GameObject.FindObjectsOfType<GameObject>();
                     List<GameObject> allBackers = new List<GameObject>();
@@ -42,7 +42,6 @@ namespace IEMod.Mods
                             allBackers.Add(allObjects[i]);
                         }
                     }
-
 
                     switch (ModMain.Settings.BackerNamesOption) 
                     {
@@ -81,6 +80,18 @@ namespace IEMod.Mods
 
                                 CharacterStats backerStats = backer.GetComponent<CharacterStats>();
                                 ReplaceBackerName(backerStats, true);
+                            }
+
+                            break;
+                        }
+                        case (int)BackerModOptions.Original:
+                        {
+                            if (ModMain.Settings.DisableBackerDialog)
+                            {
+                                foreach (GameObject backer in allBackers)
+                                {
+                                    GameUtilities.Destroy(backer.GetComponent<NPCDialogue>());
+                                }
                             }
 
                             break;
