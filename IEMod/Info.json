@@ -4,5 +4,9 @@
   "Author": "SiliconMage",
   "DisplayName": "IE Mod: Rewrite",
   "EntryMethod": "IEMod.ModMain.Load",
-  "Version": "1.2.0"
+  "Version": "1.2.1",
+  "GameVersion": "3.7.1.1411",
+  "ManagerVersion": "0.27.14e",
+  "HomePage": "https://www.nexusmods.com/pillarsofeternity/mods/347",
+  "Repository": "https://github.com/SiliconMage/IEModRewrite"
 }
