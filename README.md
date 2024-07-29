@@ -9,4 +9,4 @@ You can get started by downloading the source code and extracting it to its own 
 
 You'll find a property called "PoEDir".  Make sure you set that to the installation directory of where Pillars of Eternity is installed.  This will make your references to the various DLLs that Pillars uses valid references in the project.
 
-This also allows Aze.Publicize to find your Assembly-CSharp for publicization.  
+This also allows Aze.Publicize to find your Assembly-CSharp for publicization.  This will occur when you first build the project.
