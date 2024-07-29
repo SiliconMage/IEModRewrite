@@ -1,0 +1,42 @@
+﻿You can use the companionStats.json file to augument both your main character and your party members.  You can use the file to set their base attributes, as well as skill bonuses they get to their skills.  Any modifiers to attributes will be added afterward, as you are setting the base attribute.  Skills are different in that you are adding a bonus to the skill that is untyped and added after ranks and other bonuses are computed.
+
+The entry in the file will match the companion or hired adventurer by the Name attribute.  The only exception is the Main Character, who uses "Main Character" as their name instead.
+
+The companionStats.json files allows you to adjust the following attributes or skills:
+
+	* Might
+	* Constitution
+	* Dexterity
+	* Perception
+	* Intellect
+	* Resolve
+	* Athletics
+	* Lore
+	* Mechanics
+	* Stealth
+	* Survival
+
+To not modify a particular stat or skill, simply omit the property from the entry.  Below is an example of how to modify party member stats.
+
+
+{
+  "companionStats": [
+    {
+      "Name": "Main Character",
+      "Mechanics": 5
+    },
+    {
+      "Name": "Edér",
+      "Might": 50,
+      "Constitution": 50,
+      "Dexterity": 50,
+      "Intellect": 50,
+      "Perception": 50,
+      "Resolve": 50
+    },
+    {
+      "Name": "Aloth",
+      "Intellect": 80
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+﻿{
+  "Id": "IEMod",
+  "AssemblyName": "IEMod.dll",
+  "Author": "SiliconMage",
+  "DisplayName": "IE Mod: Rewrite",
+  "EntryMethod": "IEMod.ModMain.Load",
+  "Version": "1.2.0"
+}

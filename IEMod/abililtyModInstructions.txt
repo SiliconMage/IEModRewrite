@@ -1,0 +1,44 @@
+﻿To augment a specific ability, you will have to add entries to the file "abiltyMods.json."  Doing this is fairly straight-forward.
+
+By default, your "abilityMods.json" file will be blank.  To include an ability, you will want to add it to the "moddedAbilities" collection.  Abilties will match on name, so be sure to double-check the name of the ability in game if your mod isn't working.
+
+In addition to the Name property, you will also have access to the following properties:
+
+ * MinimumDamage - The lowest amount of damage the ability can deal
+ * MaximumDamage - The highest amount of damage the ability can deal
+ * AccuracyBonus - A bonus to accuracy when the ability is used
+ * Range - How far away from the target the ability can be used without having to move closer, or how far the ability's attack will travel
+ * DTBypass - An amount of damage from the ability that will ignore Damage Reduction
+ * Speed - How fast the ability executes.  Valid options are: 0,1,2.  These represent Instant, Short or Long
+ * Push - How far the targets of the ability are pushed on being hit
+ * DefendedBy - Which stat the ability is resisted by.  Valid options are: Deflect, Fortitude, Reflex, Will and None
+ * BlastRadius - Only for abilities with AoE.  The radius of the area of effect.  The bigger the radius, the more area the ability will affect.
+ * BlastAngle - The angle in degrees the AoE will affect. 360 is a full circle, while 180 is a half-circle.
+ * Modal - Whether or not the ability is a modal ability
+ * UseType - How often the ability recharges its uses.  Valid options are: None, PerEncounter, PerRest, Charged, PerStrongholdTurn
+ * Uses - The number of uses the ability has before it has to be recharged
+
+To not modify a prroperty of an ability, simply omit it from the list of properties.  Below is an example of modifying some abilities in the game:
+
+ 
+{
+	"moddedAbilities": [
+		{
+			"Name": "Fan of Flames",
+			"MinimumDamage": 15,
+			"MaximumDamage": 25,
+			"AccuracyBonus": 10,
+			"DTBypass": 2,
+			"DefendedBy": "Fortitude"
+		},
+		{
+			"Name": "Arcane Veil",
+			"Modal": true
+		},
+		{
+			"Name": "Knock Down",
+			"Uses": 5,
+			"UseType": "PerRest"
+		}
+	]
+}
