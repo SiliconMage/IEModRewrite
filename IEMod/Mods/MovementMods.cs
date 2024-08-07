@@ -33,7 +33,7 @@ namespace IEMod.Mods
 
                 if (ModMain.Settings.EnableWalkSpeed && ModMain.Settings.WalkToggle)
                 {
-                    if (self.Field<Mover>("m_mover").Value != null && !Stealth.IsInStealthMode(__instance.gameObject))
+                    if (self.Field<Mover>("m_mover").Value != null && !Stealth.IsInStealthMode(__instance.gameObject) && !GameState.InCombat)
                     {
                         float walkSpeed = self.Field<Mover>("m_mover").Value.WalkSpeed;
 
