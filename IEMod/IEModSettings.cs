@@ -40,6 +40,7 @@ namespace IEMod
         [XmlIgnore]
         public List<string> AutoSaveLabelList = new List<string>(){"Default", "Auto Save Before Transition","Disable Autosave"};
         public bool EnableCompanionStatModifications = false;
+        public bool PlayAudioWhenWindowLosesFocus = false;
 
         public override void Save(UnityModManager.ModEntry modEntry)
         {

@@ -139,6 +139,7 @@
     <Compile Include="Mods\SelectionCircleMods.cs" />
     <Compile Include="Mods\SpellSlotsMod.cs" />
     <Compile Include="Mods\UIMods.cs" />
+    <Compile Include="Mods\VolumeMods.cs" />
     <Compile Include="Mods\WizardMods.cs" />
     <Compile Include="Mods\XPMods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

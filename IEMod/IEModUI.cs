@@ -205,6 +205,16 @@ namespace IEMod
             GUILayout.EndHorizontal();
 
             GUILayout.BeginVertical();
+            GUILayout.Space(4);
+            GUILayout.EndVertical();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(new GUIContent("Play Game Audio When Window Loses Focus:","<b><color=cyan>Lets the game audio play in the background when the application isn't in focus.</color></b>"),GUILayout.Width(400f));
+            GUILayout.Space(10);
+            Settings.PlayAudioWhenWindowLosesFocus = GUILayout.Toggle(Settings.PlayAudioWhenWindowLosesFocus, $" {Settings.PlayAudioWhenWindowLosesFocus} ", GUILayout.Width(150f));
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginVertical();
             GUILayout.Space(10);
             GUILayout.EndVertical();
 

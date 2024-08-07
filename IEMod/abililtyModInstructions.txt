@@ -17,6 +17,9 @@ In addition to the Name property, you will also have access to the following pro
  * Modal - Whether or not the ability is a modal ability
  * UseType - How often the ability recharges its uses.  Valid options are: None, PerEncounter, PerRest, Charged, PerStrongholdTurn
  * Uses - The number of uses the ability has before it has to be recharged
+ * StatusEffectMods - Modifies the status effects of an ability.  The status effect mod has two properties: Value and Duration. Value will typically modify how much of the status effect something does, while Duration is how long that status effect will last.  Sometimes, an ability has multiple status effects.  To target a specific status effect, you will have to add empty status effect mods before the status effect you want to target.
+ * MainCharacterOnly - Modifies the ability only for the main character
+ * PartyMembersOnly - Modifies the ability only for party members, main character included
 
 To not modify a prroperty of an ability, simply omit it from the list of properties.  Below is an example of modifying some abilities in the game:
 
@@ -33,12 +36,27 @@ To not modify a prroperty of an ability, simply omit it from the list of propert
 		},
 		{
 			"Name": "Arcane Veil",
-			"Modal": true
+			"Modal": true,
+			"MainCharacterOnly": true,
+			"StatusEffectMods": [
+			{
+				"Value": 10
+			}
+			]
 		},
 		{
 			"Name": "Knock Down",
 			"Uses": 5,
 			"UseType": "PerRest"
+		},
+		{
+			"Name": "Restore Light Endurance",
+			"PartyMembersOnly": true,
+			"StatusEffectMods": [
+			{
+				"Value": 24
+			}
+			]
 		}
 	]
 }
