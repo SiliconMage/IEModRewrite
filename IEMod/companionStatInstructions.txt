@@ -1,5 +1,7 @@
 ﻿You can use the companionStats.json file to augument both your main character and your party members.  You can use the file to set their base attributes, as well as skill bonuses they get to their skills.  Any modifiers to attributes will be added afterward, as you are setting the base attribute.  Skills are different in that you are adding a bonus to the skill that is untyped and added after ranks and other bonuses are computed.
 
+If the file doesn't exist, you can create the file in your root IEMod directory.
+
 The entry in the file will match the companion or hired adventurer by the Name attribute.  The only exception is the Main Character, who uses "Main Character" as their name instead.
 
 The companionStats.json files allows you to adjust the following attributes or skills:

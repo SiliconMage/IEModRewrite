@@ -133,7 +133,13 @@ namespace IEMod.Mods
                     numHoursToWait = -1;
                 }
 
-                if (WorldTime.Instance.CurrentTime != null && numHoursToWait > 0)
+
+                if (ModMain.Settings.AdvanceStrongholdTimeWithCommands && WorldTime.Instance.CurrentTime != null &&
+                                        numHoursToWait > 0)
+                {
+                    WorldTime.Instance.AdvanceTimeByHours(numHoursToWait, false);
+                }
+                else if (WorldTime.Instance.CurrentTime != null && numHoursToWait > 0)
                 {
                     WorldTime.Instance.CurrentTime.AddHours(numHoursToWait);
                 }
@@ -153,10 +159,17 @@ namespace IEMod.Mods
                     numDaysToWait = -1;
                 }
 
-                if (WorldTime.Instance.CurrentTime != null && numDaysToWait > 0)
+                if (ModMain.Settings.AdvanceStrongholdTimeWithCommands && WorldTime.Instance.CurrentTime != null &&
+                    numDaysToWait > 0)
+                {
+                    WorldTime.Instance.AdvanceTimeByHours(numDaysToWait * WorldTime.Instance.HoursPerDay, false);
+                }
+                else if (WorldTime.Instance.CurrentTime != null && numDaysToWait > 0)
                 {
                     WorldTime.Instance.CurrentTime.AddDays(numDaysToWait);
                 }
+
+               
             }
         }
     }

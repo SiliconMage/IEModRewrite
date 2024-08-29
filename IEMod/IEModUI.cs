@@ -215,6 +215,59 @@ namespace IEMod
             GUILayout.EndHorizontal();
 
             GUILayout.BeginVertical();
+            GUILayout.Space(4);
+            GUILayout.EndVertical();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(new GUIContent("Disable Non-Stealth Detection Penalty:","<b><color=cyan>Removes the -4 penalty to detecting hidden objects and traps when not in stealth mode</color></b>"), GUILayout.Width(400f));
+            GUILayout.Space(10);
+            Settings.DisableNonStealthDetectionPenalty = GUILayout.Toggle(Settings.DisableNonStealthDetectionPenalty, $" {Settings.DisableNonStealthDetectionPenalty} ",GUILayout.Width(150f));
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginVertical();
+            GUILayout.Space(4);
+            GUILayout.EndVertical();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(new GUIContent("Maximum Camping Supplies Override:","<b><color=cyan>Sets the maximum number of camping supplies the player can hold, regardless of difficulty.</color></b>"),GUILayout.Width(400f));
+            GUILayout.Space(10);
+            Settings.MaxCampingSupplies = (int)GUILayout.HorizontalSlider(Settings.MaxCampingSupplies, 0f, 100f, GUILayout.Width(150f));
+            GUILayout.Space(5);
+            GUILayout.Label($"{(Settings.MaxCampingSupplies > 0 ? Settings.MaxCampingSupplies + "" : "Default")}",GUILayout.ExpandWidth(false));
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginVertical();
+            GUILayout.Space(4);
+            GUILayout.EndVertical();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(new GUIContent("Enable Per Encounter Spells:","<b><color=cyan>Changes all spells to be per encounter rather than per rest.</color></b>"),GUILayout.Width(400f));
+            GUILayout.Space(10);
+            Settings.EnablePerEncounterSpells = GUILayout.Toggle(Settings.EnablePerEncounterSpells, $" {Settings.EnablePerEncounterSpells}", GUILayout.ExpandWidth(false));
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginVertical();
+            GUILayout.Space(4);
+            GUILayout.EndVertical();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(new GUIContent("Enable Loot Shuffler:", "<b><color=cyan>Changes the seed of the Random for responsible for generating randomized loot.</color></b>"), GUILayout.Width(400f));
+            GUILayout.Space(10);
+            Settings.EnableLootShuffler = GUILayout.Toggle(Settings.EnableLootShuffler, $" {Settings.EnableLootShuffler} ", GUILayout.Width(150f));
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginVertical();
+            GUILayout.Space(4);
+            GUILayout.EndVertical();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(new GUIContent("Advance Stronghold Time with Console Commands:","<b><color=cyan>Advances the time of your stronghold time when using the console commands to advance time.</color></b>"),GUILayout.Width(400f));
+            GUILayout.Space(10);
+            Settings.AdvanceStrongholdTimeWithCommands = GUILayout.Toggle(Settings.AdvanceStrongholdTimeWithCommands, $" {Settings.AdvanceStrongholdTimeWithCommands} ", GUILayout.Width(150f));
+            GUILayout.EndHorizontal();
+
+
+            GUILayout.BeginVertical();
             GUILayout.Space(10);
             GUILayout.EndVertical();
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HarmonyLib;
 using UnityEngine;
+using UnityModManagerNet;
 
 namespace IEMod.Mods
 {
@@ -28,6 +29,38 @@ namespace IEMod.Mods
                     }
 
                     __result += bonusSpells;
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(GenericSpell))]
+        [HarmonyPatch("ActivateCooldown")]
+        static class GenericSpell_ActivateCooldown_Patch
+        {
+            static void Postfix(GenericSpell __instance)
+            {
+                if (ModMain.Settings.EnablePerEncounterSpells && !GameState.InCombat)
+                {
+
+                    var self = Traverse.Create(__instance);
+
+                    self.Field<CharacterStats>("m_ownerStats").Value.SpellCastCount[__instance.SpellLevel - 1]--;
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(CharacterStats))]
+        [HarmonyPatch("HandleGameUtilitiesOnCombatEnd")]
+        static class CharacterStats_HandleGameUtilitiesOnCombatEnd_Patch
+        {
+            static void Postfix(CharacterStats __instance, object sender, EventArgs e)
+            {
+                if (ModMain.Settings.EnablePerEncounterSpells)
+                {
+                    for (int i = 0; i < __instance.SpellCastCount.Length; ++i)
+                    {
+                        __instance.SpellCastCount[i] = 0;
+                    }
                 }
             }
         }

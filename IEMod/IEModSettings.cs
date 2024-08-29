@@ -41,6 +41,12 @@ namespace IEMod
         public List<string> AutoSaveLabelList = new List<string>(){"Default", "Auto Save Before Transition","Disable Autosave"};
         public bool EnableCompanionStatModifications = false;
         public bool PlayAudioWhenWindowLosesFocus = false;
+        public bool DisableNonStealthDetectionPenalty = false;
+        public int MaxCampingSupplies = 0;
+        public bool EnablePerEncounterSpells = false;
+        public bool EnableLootShuffler = false;
+        public bool AdvanceStrongholdTimeWithCommands = false;
+
 
         public override void Save(UnityModManager.ModEntry modEntry)
         {

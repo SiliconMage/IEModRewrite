@@ -133,8 +133,11 @@
     <Compile Include="Mods\BackerMods.cs" />
     <Compile Include="Mods\CompanionStatsMod.cs" />
     <Compile Include="Mods\ConsoleMod.cs" />
+    <Compile Include="Mods\DetectionMods.cs" />
     <Compile Include="Mods\DisableFriendlyFireMod.cs" />
     <Compile Include="Mods\EquipmentMods.cs" />
+    <Compile Include="Mods\ItemMods.cs" />
+    <Compile Include="Mods\LootMods.cs" />
     <Compile Include="Mods\MovementMods.cs" />
     <Compile Include="Mods\SelectionCircleMods.cs" />
     <Compile Include="Mods\SpellSlotsMod.cs" />

@@ -1,4 +1,4 @@
-﻿To augment a specific ability, you will have to add entries to the file "abiltyMods.json."  Doing this is fairly straight-forward.
+﻿To augment a specific ability, you will have to add entries to the file "abiltyMods.json."  If this file does not exist, you can simply create it in the root IEMod directory.
 
 By default, your "abilityMods.json" file will be blank.  To include an ability, you will want to add it to the "moddedAbilities" collection.  Abilties will match on name, so be sure to double-check the name of the ability in game if your mod isn't working.
 
