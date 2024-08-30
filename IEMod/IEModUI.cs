@@ -91,19 +91,31 @@ namespace IEMod
             GUILayout.EndVertical();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label(new GUIContent("Enable Fast Scouting:", "<b><color=cyan>Allows the party to scout at a faster speed.  Use the 'B' key to cycle between faster scouting and slower scouting. This will conflict with any in-game keybinds you might have configured.</color></b>"), GUILayout.Width(400f));
+            GUILayout.Label(new GUIContent("Enable Fast Scouting:", $"<b><color=cyan>Allows the party to scout at a faster speed.  Use the '{Settings.FastScoutToggleKey.ToString()}' key to cycle between faster scouting and slower scouting. This will conflict with any in-game keybinds you might have configured.</color></b>"), GUILayout.Width(400f));
             GUILayout.Space(10);
             Settings.EnableFastScouting = GUILayout.Toggle(Settings.EnableFastScouting, $" {Settings.EnableFastScouting} ", GUILayout.Width(150f));
+            GUILayout.Space(20);
+            GUILayout.Label("Fast Scout Toggle Input:", GUILayout.Width(150f));
+            GUILayout.Space(5);
+            UnityModManager.UI.DrawKeybindingSmart(Settings.FastScoutToggleKey, "Fast Scout Toggle Key Bind",
+                (KeyBinding newKeyBind) => { Settings.FastScoutToggleKey = newKeyBind;}, true,null, GUILayout.Width(150f));
             GUILayout.EndHorizontal();
+
+
 
             GUILayout.BeginVertical();
             GUILayout.Space(4);
             GUILayout.EndVertical();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label(new GUIContent("Enable Walk Speed:","<b><color=cyan>Allows the party to move at a slower pace.  Use the 'W' key to cycle between running and walking.  This will conflict with any in-game keybinds you might have configured.</color></b>"), GUILayout.Width(400f));
+            GUILayout.Label(new GUIContent("Enable Walk Speed:",$"<b><color=cyan>Allows the party to move at a slower pace.  Use the '{Settings.WalkToggleKey.ToString()}' key to cycle between running and walking.  This will conflict with any in-game keybinds you might have configured.</color></b>"), GUILayout.Width(400f));
             GUILayout.Space(10);
             Settings.EnableWalkSpeed = GUILayout.Toggle(Settings.EnableWalkSpeed, $" {Settings.EnableWalkSpeed} ", GUILayout.Width(150f));
+            GUILayout.Space(20);
+            GUILayout.Label("Walk Toggle Input:", GUILayout.Width(150f));
+            GUILayout.Space(5);
+            UnityModManager.UI.DrawKeybindingSmart(Settings.WalkToggleKey, "Walk Toggle Key Bind",
+                (KeyBinding newKeyBind) => { Settings.WalkToggleKey = newKeyBind;},true,null,GUILayout.Width(150f));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginVertical();

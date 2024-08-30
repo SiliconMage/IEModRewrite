@@ -46,6 +46,8 @@ namespace IEMod
         public bool EnablePerEncounterSpells = false;
         public bool EnableLootShuffler = false;
         public bool AdvanceStrongholdTimeWithCommands = false;
+        public KeyBinding FastScoutToggleKey = new KeyBinding() { keyCode = KeyCode.B };
+        public KeyBinding WalkToggleKey = new KeyBinding() { keyCode = KeyCode.W };
 
 
         public override void Save(UnityModManager.ModEntry modEntry)

@@ -49,13 +49,13 @@ namespace IEMod.Mods
         {
             private static void Postfix(UnityModManager.UI __instance, ref Rect ___mWindowRect, ref Vector2[] ___mScrollPosition, ref int ___tabId)
             {
-                if (ModMain.Settings.EnableWalkSpeed && !GameInput.DisableInput && GameInput.GetKeyDown(KeyCode.W))
+                if (ModMain.Settings.EnableWalkSpeed && !GameInput.DisableInput && GameInput.GetKeyDown(ModMain.Settings.WalkToggleKey.keyCode))
                 {
                     ModMain.Settings.WalkToggle = !ModMain.Settings.WalkToggle;
                     return;
                 }
 
-                if (ModMain.Settings.EnableFastScouting && !GameInput.DisableInput && GameInput.GetKeyDown(KeyCode.B))
+                if (ModMain.Settings.EnableFastScouting && !GameInput.DisableInput && GameInput.GetKeyDown(ModMain.Settings.FastScoutToggleKey.keyCode))
                 {
                     ModMain.Settings.FastScoutToggle = !ModMain.Settings.FastScoutToggle;
                     return;
