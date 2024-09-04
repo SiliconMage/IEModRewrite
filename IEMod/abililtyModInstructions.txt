@@ -20,8 +20,9 @@ In addition to the Name property, you will also have access to the following pro
  * StatusEffectMods - Modifies the status effects of an ability.  The status effect mod has two properties: Value and Duration. Value will typically modify how much of the status effect something does, while Duration is how long that status effect will last.  Sometimes, an ability has multiple status effects.  To target a specific status effect, you will have to add empty status effect mods before the status effect you want to target.
  * MainCharacterOnly - Modifies the ability only for the main character
  * PartyMembersOnly - Modifies the ability only for party members, main character included
+ * DurationOverride - Overrides the duration for specific abilities where the duration override is set, such as for Bulwark Against the Elements.  If you have tried using the StatusEffectMods property to increase the duration of an ability, and that didn't take, try using this property insteead.
 
-To not modify a prroperty of an ability, simply omit it from the list of properties.  Below is an example of modifying some abilities in the game:
+To not modify a property of an ability, simply omit it from the list of properties.  Below is an example of modifying some abilities in the game:
 
  
 {
