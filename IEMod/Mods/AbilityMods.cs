@@ -38,6 +38,7 @@ namespace IEMod.Mods
             public StatusEffectMod[] StatusEffectMods { get; set; }
             public bool? MainCharacterOnly { get; set; }
             public bool? PartyMembersOnly { get; set; }
+            public int? DurationOverride { get; set; }
         }
 
         public class StatusEffectMod
@@ -255,6 +256,58 @@ namespace IEMod.Mods
             }
         }
 
+        private static void PrintAbility(GenericAbility ability)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"**** {ability.DisplayName.GetText()} *****");
+            sb.AppendLine($"Duration Override: {ability.DurationOverride}");
+            sb.AppendLine($"Ability Mod Count: {ability.AbilityMods.Count}");
+
+            if (ability.AbilityMods.Count > 0)
+            {
+                for(int i = 0; i < ability.AbilityMods.Count; i++)
+                {
+                    var abilityMod = ability.AbilityMods[i];
+
+                    sb.AppendLine($"*** Ability Mod {i} ***");
+                    sb.AppendLine($"Ability Mod Type: {abilityMod.Type}");
+                    sb.AppendLine($"Ability Mod Value: {abilityMod.Value}");
+                    sb.AppendLine($"Ability Mod Status Effect Count: {abilityMod.StatusEffects.Length}");
+
+                    for (int c = 0; c < abilityMod.StatusEffects.Length; c++)
+                    {
+                        var statusEffectMod = abilityMod.StatusEffects[c];
+
+                        sb.AppendLine($"*** Status Effect {c} ***");
+                        sb.AppendLine($"Status Effect Value: {statusEffectMod.Value}");
+                        sb.AppendLine($"Status Effect Duration: {statusEffectMod.Duration}");
+                    }
+                }
+
+            }
+
+            sb.AppendLine($"Ability Status Effects: {ability.StatusEffects.Length}");
+
+            for (int c = 0; c < ability.StatusEffects.Length; c++)
+            {
+                var statusEffectMod = ability.StatusEffects[c];
+
+                sb.AppendLine($"*** Status Effect {c} ***");
+                sb.AppendLine($"Status Effect Value: {statusEffectMod.Value}");
+                sb.AppendLine($"Status Effect Affect Stat: {statusEffectMod.AffectsStat}");
+                sb.AppendLine($"Status Effect Defense Type: {statusEffectMod.DefenseType}");
+                sb.AppendLine($"Status Effect Damage Type: {statusEffectMod.DmgType}");
+                sb.AppendLine($"Status Effect Duration: {statusEffectMod.Duration}");
+                
+            }
+
+            UnityModManager.Logger.Log(sb.ToString());
+
+            UnityModManager.Logger.Log(ability.GetStringFlat(true, ability.Owner, StatusEffectFormatMode.InspectWindow,
+                false));
+        }
+
         private static void ApplyAbilityMod(GenericAbility ability, AbilityMod abilityMod)
         {
             AttackBase attackBase = ability.GetComponent<AttackBase>();
@@ -342,6 +395,10 @@ namespace IEMod.Mods
 
             if (abilityMod.StatusEffectMods != null)
             {
+
+                var abilityPrivate = Traverse.Create(ability);
+                var statEffectList = abilityPrivate.Field<BindingList<StatusEffect>>("m_effects").Value;
+
                 for (int i = 0; i < abilityMod.StatusEffectMods.Length; i++)
                 {
                     if (i < ability.StatusEffects.Length)
@@ -354,6 +411,7 @@ namespace IEMod.Mods
                         if (abilityMod.StatusEffectMods[i].Duration.HasValue)
                         {
                             ability.StatusEffects[i].Duration = abilityMod.StatusEffectMods[i].Duration.Value;
+                            statEffectList[i].Duration = abilityMod.StatusEffectMods[i].Duration.Value;
                         }
                     }
 
@@ -381,7 +439,10 @@ namespace IEMod.Mods
                     ability.CooldownType = GenericAbility.CooldownMode.None;
                     ability.Cooldown = 0;
 
-                    foreach (var statusEffect in ability.StatusEffects)
+                    var abilityPrivate = Traverse.Create(ability);
+                    var statEffectList = abilityPrivate.Field<BindingList<StatusEffect>>("m_effects").Value;
+
+                    foreach (var statusEffect in statEffectList)
                     {
                         statusEffect.Duration = 0;
                     }
@@ -418,6 +479,27 @@ namespace IEMod.Mods
                 ability.Cooldown = abilityMod.Uses.Value;
             }
 
+            if (ability.DurationOverride > 0 && abilityMod.DurationOverride.HasValue)
+            {
+                ability.DurationOverride = abilityMod.DurationOverride.Value;
+
+                if (attackBase)
+                {
+                    attackBase.SetAbilityParamOverrides(ability.DurationOverride, ability.FriendlyRadius);
+                }
+
+                var abilityPrivate = Traverse.Create(ability);
+                var statEffectList = abilityPrivate.Field<BindingList<StatusEffect>>("m_effects").Value;
+
+                foreach (var statEffect in statEffectList)
+                {
+                    statEffect.m_duration = abilityMod.DurationOverride.Value;
+                    statEffect.m_durationOverride = abilityMod.DurationOverride.Value;
+                }
+
+
+            }
+
         }
 
         private static void ApplyTalentMod(GenericTalent talent, AbilityMod abilityMod)
@@ -427,7 +509,6 @@ namespace IEMod.Mods
             {
                 if (talent.Type == GenericTalent.TalentType.ModExistingAbility)
                 {
-
                     foreach (var mod in talent.AbilityMods)
                     {
                         for (int i = 0; i < abilityMod.StatusEffectMods.Length; i++)
@@ -465,6 +546,11 @@ namespace IEMod.Mods
                                     ability.StatusEffects[i].Duration = abilityMod.StatusEffectMods[i].Duration.Value;
                                 }
                             }
+                        }
+
+                        if (ability.DurationOverride > 0 && abilityMod.DurationOverride.HasValue)
+                        {
+                            ability.DurationOverride = abilityMod.DurationOverride.Value;
                         }
                     }
                 }

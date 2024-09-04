@@ -33,7 +33,6 @@ namespace IEMod.Mods
                     bool isPlayerCharacter = __instance.GetComponent<Player>() != null;
                     bool isHiredAdventure = !isPlayerCharacter && __instance.GetComponent<CompanionInstanceID>() == null;
 
-
                     if (isPlayerCharacter)
                     {
                         statMods = companionStatsMods.companionStats.FirstOrDefault(x => x.Name == "Main Character");
@@ -44,7 +43,7 @@ namespace IEMod.Mods
                         statMods = companionStatsMods.companionStats.FirstOrDefault(x => x.Name == __instance.OverrideName);
                     }
 
-                    if (!isPlayerCharacter && !isHiredAdventure && __instance.IsPartyMember)
+                    if (!isPlayerCharacter && (isHiredAdventure || __instance.IsPartyMember) && statMods == null)
                     {
                         statMods = companionStatsMods.companionStats.FirstOrDefault(x => x.Name == __instance.DisplayName.ToString());
                     }

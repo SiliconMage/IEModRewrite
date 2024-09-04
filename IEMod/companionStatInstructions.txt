@@ -2,7 +2,7 @@
 
 If the file doesn't exist, you can create the file in your root IEMod directory.
 
-The entry in the file will match the companion or hired adventurer by the Name attribute.  The only exception is the Main Character, who uses "Main Character" as their name instead.
+The entry in the file will match the companion or hired adventurer by the Name attribute.  The only exception is the Main Character, who uses "Main Character" as their name instead.  For non-English versions of the name, use the non-English version of the character's name to match for their companion stats.  However the companion's name is displayed in-game is how you should use the Name attribute in the file.
 
 The companionStats.json files allows you to adjust the following attributes or skills:
 
