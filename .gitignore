@@ -1,0 +1,6 @@
+lib/
+packages/
+IEMod/bin/
+IEMod/obj/
+.idea/
+*.DotSettings.user
