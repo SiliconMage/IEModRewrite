@@ -131,6 +131,7 @@
     <Compile Include="Mods\AbilityMods.cs" />
     <Compile Include="Mods\AutoSaveMods.cs" />
     <Compile Include="Mods\BackerMods.cs" />
+    <Compile Include="Mods\CipherMods.cs" />
     <Compile Include="Mods\CompanionStatsMod.cs" />
     <Compile Include="Mods\ConsoleMod.cs" />
     <Compile Include="Mods\DetectionMods.cs" />

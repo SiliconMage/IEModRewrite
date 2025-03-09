@@ -48,7 +48,10 @@ namespace IEMod
         public bool AdvanceStrongholdTimeWithCommands = false;
         public KeyBinding FastScoutToggleKey = new KeyBinding() { keyCode = KeyCode.B };
         public KeyBinding WalkToggleKey = new KeyBinding() { keyCode = KeyCode.W };
-
+        public int ExtraItemModsValue = 0;
+        [XmlIgnore]
+        public List<string> CipherFocusOptions = new List<string>() { "Default", "None", "Half", "3/4", "Full" };
+        public int CipherFocusOption = 0;
 
         public override void Save(UnityModManager.ModEntry modEntry)
         {

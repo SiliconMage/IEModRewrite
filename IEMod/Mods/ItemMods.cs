@@ -18,5 +18,18 @@ namespace IEMod.Mods
                 __result = ModMain.Settings.MaxCampingSupplies > 0 ? ModMain.Settings.MaxCampingSupplies : __result;
             }
         }
+
+        [HarmonyPatch(typeof(ItemMod))]
+        [HarmonyPatch("MaximumModValue", MethodType.Getter)]
+        static class ItemMod_MaximumModValue_Patch
+        {
+            static void Postfix(ref int __result)
+            {
+                if (ModMain.Settings.ExtraItemModsValue > 0)
+                {
+                    __result += ModMain.Settings.ExtraItemModsValue;
+                }
+            }
+        }
     }
 }

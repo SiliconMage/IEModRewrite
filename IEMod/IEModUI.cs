@@ -278,6 +278,27 @@ namespace IEMod
             Settings.AdvanceStrongholdTimeWithCommands = GUILayout.Toggle(Settings.AdvanceStrongholdTimeWithCommands, $" {Settings.AdvanceStrongholdTimeWithCommands} ", GUILayout.Width(150f));
             GUILayout.EndHorizontal();
 
+            GUILayout.BeginVertical();
+            GUILayout.Space(4);
+            GUILayout.EndVertical();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(new GUIContent("Modifier Cipher Starting Focus:","<b><color=cyan>Changes the amount of Focus a Cipher has at the beginning of combat.</color></b>"),GUILayout.Width(400f));
+            GUILayout.Space(10);
+            Settings.CipherFocusOption = (int)GUILayout.HorizontalSlider(Settings.CipherFocusOption, 0f, Settings.CipherFocusOptions.Count - 1, GUILayout.Width(150f));
+            GUILayout.Space(5);
+            GUILayout.Label($"{Settings.CipherFocusOptions[Settings.CipherFocusOption]}", GUILayout.ExpandWidth(false));
+            GUILayout.EndHorizontal();
+
+            /*
+            GUILayout.BeginHorizontal();
+            GUILayout.Label(new GUIContent("Increase Item Enchantment Cap:", "<b><color=cyan>Increases the cap on the total value of enchantments an item can have.</color></b>"), GUILayout.Width(400f));
+            GUILayout.Space(10);
+            Settings.ExtraItemModsValue = (int)GUILayout.HorizontalSlider(Settings.ExtraItemModsValue, 0, 50,GUILayout.Width(150f));
+            GUILayout.Space(5);
+            GUILayout.Label($"{(Settings.ExtraItemModsValue > 0 ? "+" + Settings.ExtraItemModsValue : "None")}");
+            GUILayout.EndHorizontal();
+            */
 
             GUILayout.BeginVertical();
             GUILayout.Space(10);
