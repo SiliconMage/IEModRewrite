@@ -10,10 +10,10 @@ namespace IEMod.Mods
     internal class DetectionMods
     {
         [HarmonyPatch(typeof(CharacterStats))]
-        [HarmonyPatch("DetectionRange")]
+        [HarmonyPatch(nameof(CharacterStats.DetectionRange))]
         static class CharacterStats_DetectionRange_Patch
         {
-            static void Postfix(float __result, CharacterStats __instance)
+            static void Postfix(ref float __result, CharacterStats __instance)
             {
                 if (ModMain.Settings.DisableNonStealthDetectionPenalty &&
                     !Stealth.IsInStealthMode(__instance.gameObject))
